@@ -1,0 +1,4 @@
+# Runtime dependencies for plotting/analysis only.
+# The eoss framework core is stdlib-only.
+numpy
+matplotlib

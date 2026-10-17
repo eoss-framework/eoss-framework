@@ -1,0 +1,14 @@
+{
+  "USCHED_INFO": {
+    "DRAIN": 0, "OFF_DECK_DRAIN": 0,
+    "W1EG": 1, "W2EG": 2, "W3EG": 3, "W4EG": 4, "W5EG": 5,
+    "W6EG": 6, "W7EG": 7, "W8EG": 8, "W9EG": 9, "W10EG": 10,
+    "W11EG": 11, "W12EG": 12, "W13EG": 13, "W14EG": 14, "W15EG": 15,
+    "W1": 17, "W2": 18, "W3": 19, "W4": 20, "W5": 21,
+    "W6": 22, "W7": 23, "W8": 24, "W9": 25, "W10": 26, "W11": 27
+  },
+  "BATCH_T": {
+    "NOP": 0, "BATCH_START": 1, "BATCH_START_TILE": 2,
+    "BATCH_END": 4, "BARRIER_EXEMPT": 5
+  }
+}

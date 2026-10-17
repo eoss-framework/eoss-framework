@@ -1,0 +1,10 @@
+# Raw per-slot campaign data and intermediates are large (~90 MB) and fully
+# regenerable via the campaigns. Keep code, figures, and small data; exclude bulk.
+*.csv
+*.log
+slices/
+# regenerable per-arch validated DBs (large)
+validated_*.json
+# small (6-row) L2-atomic latency table — keep this one
+!atomic_l2_data.csv
+!atomic_family_data.csv

@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eoss"
+version = "0.1.0"
+description = "EoSS: A systematic framework to explore NVIDIA's native SASS ISA"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+plot = ["numpy", "matplotlib"]
+dev = ["pytest"]
+
+[project.scripts]
+eoss = "eoss.cli:main"
+
+# The repository root IS the `eoss` package directory.
+[tool.setuptools]
+package-dir = { "eoss" = "." }
+packages = [
+    "eoss",
+    "eoss.binary",
+    "eoss.enc",
+    "eoss.isa",
+    "eoss.plots",
+    "eoss.runtime",
+    "eoss.spec",
+    "eoss.tui",
+]
+
+[tool.setuptools.package-data]
+eoss = ["harnesses/*.cu", "spec/data/*.json", "data/encodings/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "gpu: tests that require a CUDA-capable GPU",
+]

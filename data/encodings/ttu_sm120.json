@@ -1,0 +1,35 @@
+{
+  "schema": "eoss.encodings/v1",
+  "sm": "120",
+  "comment": "TTU (RT Core) instruction encodings on SM120, from Rosetta String bit layouts + OptiX JIT-cubin sequence extraction. All eight classes: TTUOPEN, TTUMACROFUSE, TTUST, TTUGO, TTULD (+CLOSE), TTUCCTL.",
+  "opcodes": {
+    "TTUOPEN": "0x3d0",
+    "TTUMACROFUSE": "0x9d4",
+    "TTUST": "0x3d1",
+    "TTUGO": "0x3d3",
+    "TTULD": "0x3d2",
+    "TTUCCTL": "0x3d5"
+  },
+  "builders": {
+    "comment": "Parameterized encodings: (lo, hi) 64-bit words, little-endian. opcode bits are OR-ed into lo; control template is hi.",
+    "TTUMACROFUSE": {"lo_base": "0x79d4", "fuse_count_shift": 40, "hi": "0x000fc80000000000"},
+    "TTUST": {"lo_base": "0x73d1", "offset_shift": 40, "rb_shift": 32, "hi": "0x000fe20000000000"}
+  },
+  "sequences": {
+    "canonical_traversal": {
+      "description": "Full RT Core traversal from a standalone compute kernel: TTUOPEN -> TTUMACROFUSE(8) -> TTUST x4 -> TTUGO -> TTULD x2 -> TTULD.CLOSE. Fuse count 8 must match the number of fused instructions that follow.",
+      "instructions": [
+        {"name": "TTUOPEN",        "lo": "0x00000000000073d0", "hi": "0x000fec0000000000"},
+        {"name": "TTUMACROFUSE(8)","lo": "0x00000800000079d4", "hi": "0x000fc80000000000"},
+        {"name": "TTUST [0x000]",  "lo": "0x00000000000073d1", "hi": "0x000fe20000000000"},
+        {"name": "TTUST [0x040]",  "lo": "0x00004000000073d1", "hi": "0x000fe20000000000"},
+        {"name": "TTUST [0x050]",  "lo": "0x00005000000073d1", "hi": "0x000fe20000000000"},
+        {"name": "TTUST [0x080]",  "lo": "0x00008000000073d1", "hi": "0x000fe20000000000"},
+        {"name": "TTUGO",          "lo": "0x00000000000073d3", "hi": "0x000fe20000000000"},
+        {"name": "TTULD",          "lo": "0x00000000000073d2", "hi": "0x000fe20000000000"},
+        {"name": "TTULD",          "lo": "0x00000000000073d2", "hi": "0x000fe20000000000"},
+        {"name": "TTULD.CLOSE",    "lo": "0x00000000000073d2", "hi": "0x000fe20000000100"}
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "ISHADER": {
+    "ISHADER_VS": 0, "ISHADER_GS": 1, "ISHADER_TI": 2, "ISHADER_TS": 3,
+    "ISHADER_CS": 4, "ISHADER_PS": 5, "ISHADER_TRAP": 6, "ISHADER_ALL": 127
+  },
+  "SHADER_TYPES": {
+    "ST_UNKNOWN": 0, "ST_PS": 1, "ST_TI": 2, "ST_TS": 3,
+    "ST_GS": 4, "ST_CS": 5, "ST_VSA": 6, "ST_VSB": 7, "ST_TRAP": 8
+  }
+}
