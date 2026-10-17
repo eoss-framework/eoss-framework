@@ -34,6 +34,8 @@ plotting (`pip install -e .[plot]`). Python 3.10+ required.
 
 ## The `eoss` CLI
 
+https://github.com/user-attachments/assets/0a4b3525-18af-4fc7-97b7-509b1e945889
+
 ```
 eoss gpu info                            GPU / SM detection
 eoss spec build --sm 120                 Rosetta String -> ISA JSON
